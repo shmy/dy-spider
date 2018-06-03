@@ -1,12 +1,13 @@
 const mongoose = require('./connect')
 
 const Schema = mongoose.Schema,
-  ObjectId = Schema.ObjectId;
+    ObjectId = Schema.ObjectId;
 
 const schema = new Schema({
-  name: String, // 分类名称
-  pid: ObjectId,  // 父级ID
-  href: String, // 链接地址
+    _id: ObjectId,
+    name: String, // 分类名称
+    pid: ObjectId, // 父级ID
+    href: String, // 链接地址
 });
 
 schema.set('toJSON', { getters: true, virtuals: false });
