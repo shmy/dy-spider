@@ -9,10 +9,10 @@ const ServerApi = Router();
 const System = require('./routes/system');
 const Movie = require('./routes/movie');
 SpaRouter.get('/', async (ctx) => {
-  ctx.redirect('/admin');
+  ctx.redirect('/client');
 });
 // 后台
-SpaRouter.get('/admin*', async (ctx) => {
+SpaRouter.get('/client*', async (ctx) => {
   ctx.type = 'html';
   ctx.body = fs.createReadStream('./static/index.html');
 })
@@ -23,6 +23,7 @@ ClientApi.use(InjectResponse);
 ClientApi.prefix('/api/client');
 ClientApi.get('/classification', Movie.classification);
 ClientApi.get('/classification/:id', Movie.classificationList);
+ClientApi.get('/video/search', Movie.videoSearch);
 ClientApi.get('/video/:id', Movie.video);
 
 // 服务端API接口
@@ -39,7 +40,7 @@ app.use(SpaRouter.middleware());
 app.use(Cors());
 app.use(ClientApi.middleware());
 app.use(ServerApi.middleware());
-app.listen(3000);
+app.listen(1994);
 
 async function InjectResponse(ctx, next) {
   ctx.success = function (data) {
