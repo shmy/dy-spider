@@ -8,13 +8,27 @@ const ServerApi = Router();
 
 const System = require('./routes/system');
 const Movie = require('./routes/movie');
+
+function fsExistsSync(path) {
+  try{
+    fs.accessSync(path, fs.F_OK);
+  }catch(e){
+    return false;
+  }
+  return true;
+}
+
 SpaRouter.get('/', async (ctx) => {
   ctx.redirect('/client');
 });
 // 后台
 SpaRouter.get('/client*', async (ctx) => {
   ctx.type = 'html';
-  ctx.body = fs.createReadStream('./static/index.html');
+  let pathinfo = ctx.url.replace(/^\/client/, '');
+  pathinfo = `./static${pathinfo}/index.html`;
+  pathinfo = fsExistsSync(pathinfo) ? pathinfo : './static/index.html';
+  console.log(pathinfo);
+  ctx.body = fs.createReadStream(pathinfo);
 })
 // 静态服务
 SpaRouter.get('/static*', require('koa-static')("./static", { }));
