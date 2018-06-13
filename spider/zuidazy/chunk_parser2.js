@@ -4,7 +4,7 @@ const { fetch, detailParser } = require('./common');
 
 const host = 'http://www.zuidazy.com/';
 
-function getTime (url) {
+function getId (url) {
   return +url.match(/vod-detail-id-(\d+)\.html$/)[1];
 }
 exports.listParser = async (queue) => {
@@ -13,15 +13,12 @@ exports.listParser = async (queue) => {
     const $ = cheerio.load(data);
     const queues = [];
     const nextUrl = $('.pagenow').next().attr("href");
-    const videoLi = $('.xing_vb4');
-    videoLi.each((index, el) => {
-      const video = $(el).find('a');
-      const time = $(el).next().next().text().trim();
-      // console.log(new Date(time).getTime(), queue.latestTime)
-      if (new Date(time).getTime() >= queue.latestTime) {
+    const videoA = $('.xing_vb4>a');
+    videoA.each((index, el) => {
+      if (getId(`${host}${el.attribs.href}`) > queue.latestId) {
         queues.push({
-          name: video.text(),
-          url: `${host}${video.attr('href')}`,
+          name: $(el).text(),
+          url: `${host}${el.attribs.href}`,
           parser: 'detailParser',
           saver: 'detailSaver',
           pid: queue.pid
@@ -29,10 +26,10 @@ exports.listParser = async (queue) => {
       }
       
     });
-    if (nextUrl && queues.length === videoLi.length) {
+    if (nextUrl && queues.length === videoA.length) {
       // 如果有下一页 并且本页全部都大于最新的id
       queues.push({
-        latestTime: queue.latestTime,
+        latestId: queue.latestId,
         url: `http://www.zuidazy.com${nextUrl}`,
         parser: 'listParser',
         saver: null,
@@ -42,7 +39,7 @@ exports.listParser = async (queue) => {
     return { queues };
   } catch (error) {
     model.failModel.create({
-      latestTime: queue.latestTime,
+      latestId: queue.latestId,
       url: queue.url,
       parser: 'listParser',
       saver: null,

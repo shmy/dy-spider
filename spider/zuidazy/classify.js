@@ -34,6 +34,39 @@ const type = [
     // 战争片
     id: 11,
     pid: ObjectId("5b0fd14e7cad175a34a2ea90")
+  },
+  
+  {
+    // 国产剧
+    id: 12,
+    pid: ObjectId("5b1fcf0b30025ae5371a6ad8")
+  },
+  {
+    // 港台剧
+    id: 13,
+    pid: ObjectId("5b1fcf6330025ae5371a6b00")
+  },
+  {
+    // 日韩剧
+    id: 14,
+    pid: ObjectId("5b1fcfb230025ae5371a6b22")
+  },
+  {
+    // 欧美剧
+    id: 15,
+    pid: ObjectId("5b1fcffb30025ae5371a6b41")
+  },
+  
+  {
+    // 综艺
+    id: 3,
+    pid: ObjectId("5b1fd85730025ae5371abaed")
+  },
+  
+  {
+    // 动漫
+    id: 4,
+    pid: ObjectId("5b1fdbee30025ae5371ac363")
   }
 ];
 function getClassify (arr, page = 100) {
@@ -45,6 +78,6 @@ function getClassify (arr, page = 100) {
   }));
 }
 
-exports.fullClass = getClassify(type, 45);
+exports.fullClass = getClassify(type, 14); // 从第45页开始
 
-exports.chunkClass = getClassify(type, 1);
+exports.chunkClass = getClassify(type, 1); // 从第一页开始

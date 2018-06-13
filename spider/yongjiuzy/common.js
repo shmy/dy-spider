@@ -10,8 +10,8 @@ const fetch = function(url) {
     // proxy: 'http://127.0.0.1:1087',
     headers: {
       "User-Agent": getUserAgent(),
-      "Host": "www.zuidazy.com",
-      "Referer": "www.zuidazy.com",
+      "Host": "www.yongjiuzy.com",
+      "Referer": "www.yongjiuzy.com",
     },
     timeout: 10000
   });
@@ -22,12 +22,6 @@ exports.detailParser = async (queue) => {
     const data = await fetch(queue.url);
     const $ = cheerio.load(data);
     const vodinfoboxs = $('.vodinfobox li');
-    const vodplayinfo = $('input[type="checkbox"]').filter((i, e) => {
-      return /^(http|https|ftp)\:\/\//.test($(e).attr('value'))
-    });
-    const remote_url = vodplayinfo.map((i, e) => {
-      return { url: $(e).val(), tag: $(e).parent().text().split('$')[0] }
-    }).toArray()
     const payload = {
       id: +queue.url.match(/vod-detail-id-(\d+)\.html$/)[1], // 资源id
       quality: $('.vodh > span').text(), // 影片质量
@@ -44,8 +38,7 @@ exports.detailParser = async (queue) => {
       introduce: $('.vodplayinfo > span').text().trim().replace(/\n|\t|\r/g, ''), // 影片简介
       href: queue.url, // 抓取链接
       saved: false, // 是否已经下载完毕
-      // remote_url: $('input[type="checkbox"]').map((i, el) => el.attribs.value).toArray().filter(i => /^(http|https|ftp)\:\/\//.test(i)), // 远程下载链接
-      remote_url,
+      remote_url: $('input[type="checkbox"]').map((i, el) => el.attribs.value).toArray().filter(i => /^(http|https|ftp)\:\/\//.test(i)), // 远程下载链接
       local_url: [], // 本地链接(已下载)
       pid: queue.pid,
     }

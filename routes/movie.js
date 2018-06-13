@@ -27,6 +27,11 @@ exports.classificationList = async (ctx) => {
         pid: result._id
       });
       ids = ids.map(item => item._id);
+      // 如果没有子集
+      // 那还是找自己
+      if (!ids.length) {
+        ids = [id];
+      }
     } else {
       ids = [id];
     }
