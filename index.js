@@ -32,7 +32,7 @@ SpaRouter.get('/client*', async (ctx) => {
   ctx.body = fs.createReadStream(pathinfo);
 })
 // 静态服务
-SpaRouter.get('/static*', require('koa-static')("./static", { }));
+SpaRouter.get('/static*', require('koa-static')(path.resolve(__dirname, "./static"), { }));
 // 客户端API接口
 ClientApi.use(InjectResponse);
 ClientApi.prefix('/api/client');
