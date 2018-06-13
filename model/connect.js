@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-
-mongoose.connect('mongodb://localhost:27017/dy');
+const os = require('os');
+const address = os.platform() === 'liunx' ? '172.17.0.1' : 'localhost'
+mongoose.connect(`mongodb://${address}:27017/dy`);
 
 module.exports = mongoose;
