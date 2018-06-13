@@ -20,11 +20,11 @@ exports.classificationList = async (ctx) => {
   per_page = isNaN(per_page) ? 20 : +per_page;
   try {
     let ids;
-    let result = await model.classificationModel.findById(id);
-    if (result.pid === null) {
+    const classify = await model.classificationModel.findById(id);
+    if (classify.pid === null) {
       // 属于
       ids = await model.classificationModel.find({
-        pid: result._id
+        pid: classify._id
       });
       ids = ids.map(item => item._id);
       // 如果没有子集
@@ -39,12 +39,17 @@ exports.classificationList = async (ctx) => {
       pid: { $in: ids }
     };
     const total = await model.videoModel.count(conditions);
-    result = await model.videoModel.find(conditions, "quality name thumbnail generated_at running_time saved")
+    const result = await model.videoModel.find(conditions, "classify quality name thumbnail generated_at running_time saved")
     .sort({ generated_at: -1 })
     .skip((page - 1) * per_page)
     .limit(per_page);
     ctx.success({
-      total, result
+      total,
+      page: page,
+      per_page: per_page,
+      last_page: Math.ceil(total / per_page),
+      title: classify.name,
+      result
     });
   } catch (error) {
     ctx.fail(error.message);
@@ -55,7 +60,7 @@ exports.classificationList = async (ctx) => {
 exports.video = async (ctx) => {
   const id = ctx.params.id;
   try {
-    const result = await model.videoModel.findById(id);
+    const result = await model.videoModel.findById(id).populate('classify');
     result !== null ? ctx.success(result) : ctx.fail("资源不存在");
   } catch (error) {
     ctx.fail(error.message);
@@ -76,7 +81,11 @@ exports.videoSearch = async (ctx) => {
       .skip((page - 1) * per_page)
       .limit(per_page);
     ctx.success({
-      total, result
+      total,
+      page: page,
+      per_page: per_page,
+      last_page: Math.ceil(total / per_page),
+      result
     });
   } catch (error) {
     ctx.fail(error.message);

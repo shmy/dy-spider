@@ -2,6 +2,7 @@ const Koa = require('koa');
 const Cors = require('@koa/cors');
 const Router = require('koa-joi-router');
 const fs = require('fs')
+const path = require('path')
 const SpaRouter = Router();
 const ClientApi = Router();
 const ServerApi = Router();
@@ -25,8 +26,8 @@ SpaRouter.get('/', async (ctx) => {
 SpaRouter.get('/client*', async (ctx) => {
   ctx.type = 'html';
   let pathinfo = ctx.url.replace(/^\/client/, '');
-  pathinfo = `./static${pathinfo}/index.html`;
-  pathinfo = fsExistsSync(pathinfo) ? pathinfo : './static/index.html';
+  pathinfo = path.resolve(__dirname, `./static${pathinfo}/index.html`);
+  pathinfo = fsExistsSync(pathinfo) ? pathinfo : path.resolve(__dirname, './static/index.html');
   console.log(pathinfo);
   ctx.body = fs.createReadStream(pathinfo);
 })

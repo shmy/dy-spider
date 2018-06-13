@@ -23,7 +23,8 @@ const schema = new Schema({
   remote_url: Array, // 远程下载链接
   local_url: Array, // 本地链接(已下载)
   source: String, // 来源网站
-  pid: ObjectId // 分类id
+  pid: ObjectId, // 分类id
+  classify: { type: ObjectId, ref: 'classification' }
 });
 
 schema.set('toJSON', { getters: true, virtuals: false });
