@@ -1,8 +1,8 @@
 const cheerio = require('cheerio');
-const model = require('../../model/index');
+const model = require('../model/index');
 const { fetch, detailParser } = require('./common');
 
-const host = 'http://www.yongjiuzy.com';
+const host = 'http://www.zuidazy.net/';
 
 function getPrevUrl(url) {
   const matched = url.match(/vod-type-id-(\d+)-pg-(\d+)\.html$/);
@@ -10,7 +10,7 @@ function getPrevUrl(url) {
   const currentId = +matched[1];
   const currentPage = +matched[2];
   if (currentPage <= 1) return null;
-  return `${host}/?m=vod-type-id-${currentId}-pg-${currentPage - 1}\.html`;
+  return `${host}?m=vod-type-id-${currentId}-pg-${currentPage - 1}\.html`;
 }
 exports.listParser = async (queue) => {
   try {
@@ -27,7 +27,7 @@ exports.listParser = async (queue) => {
         pid: queue.pid
       });
     }
-    $('.DianDian > .l > a').each((index, el) => {
+    $('.xing_vb4>a').each((index, el) => {
       queues.push({
         url: `${host}${el.attribs.href}`,
         parser: 'detailParser',
@@ -35,7 +35,6 @@ exports.listParser = async (queue) => {
         pid: queue.pid
       });
     });
-    console.log(queues)
     return { queues };
   } catch (error) {
     model.failModel.create({

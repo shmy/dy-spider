@@ -1,4 +1,4 @@
-const model = require('../model');
+const model = require('./model');
 let count = 0;
 exports.detailSaver = async payload => {
   // console.log(payload);

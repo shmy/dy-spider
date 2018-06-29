@@ -1,6 +1,6 @@
 const ObjectId = id => id;
 
-const host = 'http://www.zuidazy.com/';
+const host = 'http://www.zuidazy.net/';
 const getUrl = (id, page) => `${host}?m=vod-type-id-${id}-pg-${page}.html`;
 const type = [
   { // 动作片

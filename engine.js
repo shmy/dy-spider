@@ -1,5 +1,5 @@
 const Saver = require('./saver')
-const model = require('../model');
+const model = require('./model');
 // 先按分类爬 pid
 // 失败的存数据库
 // 队列没有值时 拉取数据库失败的列表 加入队列

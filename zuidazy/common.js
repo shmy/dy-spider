@@ -1,5 +1,5 @@
 const cheerio = require('cheerio');
-const model = require('../../model');
+const model = require('../model');
 const request = require('request-promise-native');
 
 const getUserAgent = require('../ua');
@@ -10,8 +10,8 @@ const fetch = function(url) {
     // proxy: 'http://127.0.0.1:1087',
     headers: {
       "User-Agent": getUserAgent(),
-      "Host": "www.zuidazy.com",
-      "Referer": "www.zuidazy.com",
+      "Host": "www.zuidazy.net",
+      "Referer": "www.zuidazy.net",
     },
     timeout: 10000
   });

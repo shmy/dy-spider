@@ -1,10 +1,10 @@
 const cheerio = require('cheerio');
-const model = require('../../model/index');
+const model = require('../model/index');
 const { fetch, detailParser } = require('./common');
 
-const host = 'http://www.zuidazy.com/';
+const host = 'http://www.zuidazy.net/';
 
-function getId (url) {
+function getTime (url) {
   return +url.match(/vod-detail-id-(\d+)\.html$/)[1];
 }
 exports.listParser = async (queue) => {
@@ -13,12 +13,15 @@ exports.listParser = async (queue) => {
     const $ = cheerio.load(data);
     const queues = [];
     const nextUrl = $('.pagenow').next().attr("href");
-    const videoA = $('.xing_vb4>a');
-    videoA.each((index, el) => {
-      if (getId(`${host}${el.attribs.href}`) > queue.latestId) {
+    const videoLi = $('.xing_vb4');
+    videoLi.each((index, el) => {
+      const video = $(el).find('a');
+      const time = $(el).next().next().text().trim();
+      // console.log(new Date(time).getTime(), queue.latestTime)
+      if (new Date(time).getTime() >= queue.latestTime) {
         queues.push({
-          name: $(el).text(),
-          url: `${host}${el.attribs.href}`,
+          name: video.text(),
+          url: `${host}${video.attr('href')}`,
           parser: 'detailParser',
           saver: 'detailSaver',
           pid: queue.pid
@@ -26,11 +29,11 @@ exports.listParser = async (queue) => {
       }
       
     });
-    if (nextUrl && queues.length === videoA.length) {
+    if (nextUrl && queues.length === videoLi.length) {
       // 如果有下一页 并且本页全部都大于最新的id
       queues.push({
-        latestId: queue.latestId,
-        url: `http://www.zuidazy.com${nextUrl}`,
+        latestTime: queue.latestTime,
+        url: `http://www.zuidazy.net${nextUrl}`,
         parser: 'listParser',
         saver: null,
         pid: queue.pid
@@ -39,7 +42,7 @@ exports.listParser = async (queue) => {
     return { queues };
   } catch (error) {
     model.failModel.create({
-      latestId: queue.latestId,
+      latestTime: queue.latestTime,
       url: queue.url,
       parser: 'listParser',
       saver: null,
