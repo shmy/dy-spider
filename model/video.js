@@ -8,6 +8,7 @@ const schema = new Schema({
   thumbnail: String,
   quality: String, // 影片质量
   name: String, // 电影名称
+  keyword: String, // 快速搜索
   alias: Array, // 别名
   director: Array, // 导演
   starring: Array, // 主演
