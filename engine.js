@@ -56,6 +56,7 @@ class Engine {
       clearInterval(this.timer);
       this.timer = null;
       console.log(this.source, "任务完成");
+      process.exit(0);
       return
     }
     console.log("准备加载失败的任务", fails.length, "还没回来的请求数量", requestCount);
