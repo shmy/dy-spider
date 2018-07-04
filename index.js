@@ -37,7 +37,8 @@ const rule = new schedule.RecurrenceRule();
 // 每两小时执行一次
 // const times = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23];
 const times = [1, 6, 11, 16, 21];
-rule.second = times;
+rule.hour = times;
+rule.minute = 0;
 
 schedule.scheduleJob(rule, function(){
   execChunk();
