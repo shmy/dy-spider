@@ -14,8 +14,8 @@ console.log(toDay)
   const latests = [];
   for (let d of chunkClass) {
     // 找出每个分类最新的id
-    // d.latestTime = new Date('2018-06-28').getTime();
-    d.latestTime = new Date(toDay).getTime();
+    d.latestTime = new Date('2018-07-01').getTime();
+    // d.latestTime = new Date(toDay).getTime();
     latests.push(d);
   }
   new Engine(latests, Parser, 'zuidazy', 7);
