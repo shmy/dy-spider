@@ -8,6 +8,7 @@ month = month < 10 ? '0' + month : month;
 let day = date.getDay();
 day = day < 10 ? '0' + day : day;
 const toDay = `${year}-${month}-${day}`;
+console.log(toDay)
 ;(async () => {
   
   const latests = [];
