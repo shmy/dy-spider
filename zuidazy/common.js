@@ -30,7 +30,7 @@ exports.detailParser = async (queue) => {
     }).toArray()
     const payload = {
       id: +queue.url.match(/vod-detail-id-(\d+)\.html$/)[1], // 资源id
-      quality: $('.vodh > span').text(), // 影片质量
+      latest: $('.vodh > span').text(), // 最近更新
       name: $('.vodh > h2').text(), // 电影名称
       thumbnail: $('.vodImg > img').attr('src'), // 缩略图
       alias: vodinfoboxs.eq(0).find('span').text().split(','), // 别名
@@ -43,10 +43,10 @@ exports.detailParser = async (queue) => {
       generated_at: vodinfoboxs.eq(8).find('span').text(), // 更新时间
       introduce: $('.vodplayinfo > span').text().trim().replace(/\n|\t|\r/g, ''), // 影片简介
       href: queue.url, // 抓取链接
-      saved: false, // 是否已经下载完毕
+      // saved: false, // 是否已经下载完毕
       // remote_url: $('input[type="checkbox"]').map((i, el) => el.attribs.value).toArray().filter(i => /^(http|https|ftp)\:\/\//.test(i)), // 远程下载链接
       remote_url,
-      local_url: [], // 本地链接(已下载)
+      // local_url: [], // 本地链接(已下载)
       pid: queue.pid,
     }
     return { payload, saver: queue.saver };
