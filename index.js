@@ -21,9 +21,9 @@ const logger = log4js.getLogger();
 logger.level = 'info';
 function execChunk () {
   const ls = spawn("node", ['./zuidazy/chunk']);
-  ls.stdout.on('data', (data) => {
-    logger.info(`stdout: zuidazy ${data}`);
-  });
+  // ls.stdout.on('data', (data) => {
+  //   logger.info(`stdout: zuidazy ${data}`);
+  // });
   
   ls.stderr.on('data', (data) => {
     logger.error(`stderr: ${data}`);
@@ -36,9 +36,9 @@ function execChunk () {
 
 function execChunk2 () {
   const ls = spawn("node", ['./kuyunzy/chunk']);
-  ls.stdout.on('data', (data) => {
-    logger.info(`stdout: kuyunzy ${data}`);
-  });
+  // ls.stdout.on('data', (data) => {
+  //   logger.info(`stdout: kuyunzy ${data}`);
+  // });
   
   ls.stderr.on('data', (data) => {
     logger.error(`stderr: ${data}`);
