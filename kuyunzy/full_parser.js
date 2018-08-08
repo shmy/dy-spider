@@ -37,7 +37,7 @@ exports.listParser = async (queue) => {
     });
     return { queues };
   } catch (error) {
-    model.failModel.create({
+    model.failKunYunZYModel.create({
       url: queue.url,
       parser: 'listParser',
       saver: null,

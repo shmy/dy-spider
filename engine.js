@@ -7,13 +7,14 @@ const model = require('./model');
 let requestCount = 0;
 
 class Engine {
-  constructor(queues, parser, source, max = 10) {
+  constructor(queues, parser, source, max = 10, failModel = model.failModel) {
     this.queues = queues;
     this.parser = parser;
     this.source = source;
     this.max = max;
     this.isFetchFail = false;
     this.timer = null;
+    this.failModel = failModel;
     this.run();
   }
   run() {
@@ -50,8 +51,8 @@ class Engine {
   }
   async doFailQueues() {
     this.isFetchFail = true;
-    const fails = await model.failModel.find({});
-    await model.failModel.deleteMany({});
+    const fails = await this.failModel.find({});
+    await this.failModel.deleteMany({});
     if (fails.length === 0 && requestCount === 0) {
       clearInterval(this.timer);
       this.timer = null;

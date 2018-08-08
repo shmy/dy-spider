@@ -69,7 +69,7 @@ exports.detailParser = async (queue) => {
     }
     return { payload, saver: queue.saver };
   } catch (error) {
-    model.failModel.create({
+    model.failKunYunZYModel.create({
       url: queue.url,
       parser: 'detailParser',
       saver: 'detailSaver',
