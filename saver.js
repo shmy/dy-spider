@@ -19,6 +19,8 @@ exports.detailSaver = async payload => {
   }).map(i => i[0]).join('');
   
   payload.keyword = keyword + normal + firstLetter;
+  // console.log(payload);
+  // return Promise.resolve();
   const p = await model.videoModel.findOne({ id: payload.id, source: payload.source });
   if (!p) {
     payload.number = 0;

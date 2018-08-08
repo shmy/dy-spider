@@ -1,71 +1,84 @@
 const ObjectId = id => id;
 
-const host = 'http://www.zuidazy.net/';
-const getUrl = (id, page) => `${host}?m=vod-type-id-${id}-pg-${page}.html`;
+const host = 'http://www.kuyunzy.net/';
+const getUrl = (id, page) => `${host}list/?${id}-${page}.html`;
 const type = [
   { // 动作片
-    id: 5,
+    id: 32,
     pid: ObjectId("5b0fd14e7cad175a34a2ea8a")
   },
   { // 喜剧片
-    id: 6,
+    id: 33,
     pid: ObjectId("5b0fd14e7cad175a34a2ea8b")
   },
   { // 爱情片
-    id: 7,
+    id: 34,
     pid: ObjectId("5b0fd14e7cad175a34a2ea8c")
   },
   {
     // 科幻片
-    id: 8,
+    id: 35,
     pid: ObjectId("5b0fd14e7cad175a34a2ea8d")
   },
   {
     // 恐怖片
-    id: 9,
+    id: 36,
     pid: ObjectId("5b0fd14e7cad175a34a2ea8e")
   },
   {
     // 剧情片
-    id: 10,
+    id: 37,
     pid: ObjectId("5b0fd14e7cad175a34a2ea8f")
   },
   {
     // 战争片
-    id: 11,
+    id: 38,
     pid: ObjectId("5b0fd14e7cad175a34a2ea90")
   },
   
   {
     // 国产剧
-    id: 12,
+    id: 1,
     pid: ObjectId("5b1fcf0b30025ae5371a6ad8")
   },
   {
-    // 港台剧
-    id: 13,
+    // 港台剧 - 香港剧
+    id: 2,
     pid: ObjectId("5b1fcf6330025ae5371a6b00")
   },
   {
-    // 日韩剧
-    id: 14,
+    // 港台剧 - 台湾剧
+    id: 3,
+    pid: ObjectId("5b1fcf6330025ae5371a6b00")
+  },
+  {
+    // 日韩剧 - 日本剧
+    id: 4,
+    pid: ObjectId("5b1fcfb230025ae5371a6b22")
+  },
+  {
+    // 日韩剧 - 韩国剧
+    id: 5,
     pid: ObjectId("5b1fcfb230025ae5371a6b22")
   },
   {
     // 欧美剧
-    id: 15,
+    id: 6,
     pid: ObjectId("5b1fcffb30025ae5371a6b41")
   },
-  
+  {
+    // 欧美剧 海外剧
+    id: 29,
+    pid: ObjectId("5b1fcffb30025ae5371a6b41")
+  },
   {
     // 综艺
-    id: 3,
+    id: 30,
     pid: ObjectId("5b1fd85730025ae5371abaed")
   },
-  
   {
     // 动漫
-    id: 4,
+    id: 31,
     pid: ObjectId("5b1fdbee30025ae5371ac363")
   }
 ];
@@ -78,6 +91,6 @@ function getClassify (arr, page = 100) {
   }));
 }
 
-exports.fullClass = getClassify(type, 14); // 从第14页开始
+exports.fullClass = getClassify(type, 33); // 从第33页开始
 
 exports.chunkClass = getClassify(type, 1); // 从第一页开始
