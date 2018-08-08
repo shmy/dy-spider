@@ -22,7 +22,7 @@ logger.level = 'info';
 function execChunk () {
   const ls = spawn("node", ['./zuidazy/chunk']);
   ls.stdout.on('data', (data) => {
-    logger.info(`stdout: ${data}`);
+    logger.info(`stdout: zuidazy ${data}`);
   });
   
   ls.stderr.on('data', (data) => {
@@ -30,7 +30,22 @@ function execChunk () {
   });
   
   ls.on('close', (code) => {
-    logger.info(`子进程退出码：${code}`);
+    logger.info(`zuidazy 子进程退出码：${code}`);
+  });
+}
+
+function execChunk2 () {
+  const ls = spawn("node", ['./kuyunzy/chunk']);
+  ls.stdout.on('data', (data) => {
+    logger.info(`stdout: kuyunzy ${data}`);
+  });
+  
+  ls.stderr.on('data', (data) => {
+    logger.error(`stderr: ${data}`);
+  });
+  
+  ls.on('close', (code) => {
+    logger.info(`kuyunzy 子进程退出码：${code}`);
   });
 }
 const rule = new schedule.RecurrenceRule();
@@ -41,4 +56,5 @@ rule.minute = 0;
 
 schedule.scheduleJob(rule, function(){
   execChunk();
+  execChunk2();
 });
