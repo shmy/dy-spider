@@ -3,6 +3,13 @@ const ObjectId = id => id;
 const host = 'http://www.kuyunzy.net/';
 const getUrl = (id, page) => `${host}list/?${id}-${page}.html`;
 const type = [
+  {
+    // 记录片
+    id: 42,
+    pid: ObjectId("5b6bd4eb50456c5fb99610f4")
+  },
+];
+const type2 = [
   { // 动作片
     id: 32,
     pid: ObjectId("5b0fd14e7cad175a34a2ea8a")
@@ -34,6 +41,11 @@ const type = [
     // 战争片
     id: 38,
     pid: ObjectId("5b0fd14e7cad175a34a2ea90")
+  },
+  {
+    // 记录片
+    id: 42,
+    pid: ObjectId("5b6bd4eb50456c5fb99610f4")
   },
   
   {
@@ -91,6 +103,6 @@ function getClassify (arr, page = 100) {
   }));
 }
 
-exports.fullClass = getClassify(type, 33); // 从第33页开始
+exports.fullClass = getClassify(type, 6); // 从第33页开始
 
 exports.chunkClass = getClassify(type, 1); // 从第一页开始
