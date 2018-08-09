@@ -2,8 +2,14 @@ const ObjectId = id => id;
 
 const host = 'http://www.zuidazy.net/';
 const getUrl = (id, page) => `${host}?m=vod-type-id-${id}-pg-${page}.html`;
-
 const type = [
+  {
+    // 福利片
+    id: 16,
+    pid: ObjectId("5b6c1f84adcfce70593225a9")
+  },
+]
+const type2 = [
   { // 动作片
     id: 5,
     pid: ObjectId("5b0fd14e7cad175a34a2ea8a")
@@ -40,6 +46,11 @@ const type = [
     // 伦理片
     id: 17,
     pid: ObjectId("5b6bd55a50456c5fb99610f5")
+  },
+  {
+    // 福利片
+    id: 16,
+    pid: ObjectId("5b6c1f84adcfce70593225a9")
   },
   
   {
