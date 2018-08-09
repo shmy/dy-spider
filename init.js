@@ -15,6 +15,8 @@ const classifications = [
       { name: "恐怖片", _id: "5b0fd14e7cad175a34a2ea8e" },
       { name: "剧情片", _id: "5b0fd14e7cad175a34a2ea8f" },
       { name: "战争片", _id: "5b0fd14e7cad175a34a2ea90" },
+      { name: "记录片", _id: "5b6bd4eb50456c5fb99610f4" },
+      { name: "伦理片", _id: "5b6bd55a50456c5fb99610f5" },
     ]
   },
   {

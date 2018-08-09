@@ -3,6 +3,13 @@ const ObjectId = id => id;
 const host = 'http://www.zuidazy.net/';
 const getUrl = (id, page) => `${host}?m=vod-type-id-${id}-pg-${page}.html`;
 const type = [
+  {
+    // 伦理片
+    id: 17,
+    pid: ObjectId("5b6bd55a50456c5fb99610f5")
+  },
+];
+const type2 = [
   { // 动作片
     id: 5,
     pid: ObjectId("5b0fd14e7cad175a34a2ea8a")
@@ -34,6 +41,11 @@ const type = [
     // 战争片
     id: 11,
     pid: ObjectId("5b0fd14e7cad175a34a2ea90")
+  },
+  {
+    // 伦理片
+    id: 17,
+    pid: ObjectId("5b6bd55a50456c5fb99610f5")
   },
   
   {
@@ -78,6 +90,6 @@ function getClassify (arr, page = 100) {
   }));
 }
 
-exports.fullClass = getClassify(type, 14); // 从第14页开始
+exports.fullClass = getClassify(type, 81); // 从第14页开始
 
 exports.chunkClass = getClassify(type, 1); // 从第一页开始
