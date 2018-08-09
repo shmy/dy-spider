@@ -95,6 +95,6 @@ function getClassify (arr, page = 100) {
   }));
 }
 
-exports.fullClass = getClassify(type, 81); // 从第14页开始
+exports.fullClass = getClassify(type, 121); // 从第14页开始
 
 exports.chunkClass = getClassify(type, 1); // 从第一页开始
