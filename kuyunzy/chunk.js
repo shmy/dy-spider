@@ -1,4 +1,5 @@
 const Engine = require('../engine');
+const model = require('./model')
 const Parser = require('./chunk_parser')
 const { chunkClass } = require('./classify');
 const date = new Date();
@@ -18,5 +19,5 @@ console.log(toDay)
     d.latestTime = new Date(toDay).getTime();
     latests.push(d);
   }
-  new Engine(latests, Parser, 'kuyunzy', 10);
+  new Engine(latests, Parser, 'kuyunzy', 10, model.failKunYunZYModel);
 })();
