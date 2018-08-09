@@ -1,5 +1,5 @@
 const Engine = require('../engine');
-const model = require('./model')
+const model = require('../model')
 const Parser = require('./chunk_parser')
 const { chunkClass } = require('./classify');
 const date = new Date();
