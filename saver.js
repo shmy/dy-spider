@@ -19,8 +19,8 @@ exports.detailSaver = async payload => {
   }).map(i => i[0]).join('');
   
   payload.keyword = keyword + normal + firstLetter;
-  // console.log(payload);
-  // return Promise.resolve();
+  console.log(payload);
+  return Promise.resolve();
   const p = await model.videoModel.findOne({ id: payload.id, source: payload.source });
   if (!p) {
     payload.number = 0;
@@ -28,6 +28,6 @@ exports.detailSaver = async payload => {
     console.log('👌开始保存---#', count, "{" + payload.keyword + "}", payload.id);
     return model.videoModel.create(payload);
   }
-  // console.log( '😯开始更新---', "{" + payload.name + "}", payload.id);
+  console.log( '😯开始更新---', "{" + payload.name + "}", payload.id);
   return model.videoModel.update({ id: payload.id }, payload);
 };

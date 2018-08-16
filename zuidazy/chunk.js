@@ -18,5 +18,5 @@ console.log(toDay)
     d.latestTime = new Date(toDay).getTime();
     latests.push(d);
   }
-  new Engine(latests, Parser, 'zuidazy', 7);
+  new Engine(latests, Parser, 'zuidazy', 5);
 })();

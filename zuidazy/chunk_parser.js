@@ -7,6 +7,7 @@ const host = 'http://www.zuidazy.net/';
 exports.listParser = async (queue) => {
   try {
     const data = await fetch(queue.url);
+    console.log(data)
     const $ = cheerio.load(data);
     const queues = [];
     const nextUrl = $('.pagenow').next().attr("href");
