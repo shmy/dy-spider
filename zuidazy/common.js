@@ -7,7 +7,7 @@ const getUserAgent = require('../ua');
 const fetch = function(url) {
   return request.get({
     url: url,
-    proxy: 'http://127.0.0.1:1087',
+    // proxy: 'http://127.0.0.1:1087',
     headers: {
       "User-Agent": getUserAgent(),
       "Host": "www.zuidazy.net",
