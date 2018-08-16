@@ -7,8 +7,8 @@ let month = date.getMonth() + 1;
 month = month < 10 ? '0' + month : month;
 let day = date.getDate();
 day = day < 10 ? '0' + day : day;
-// const toDay = `${year}-${month}-${day}`;
-const toDay = '2018-08-01';
+const toDay = `${year}-${month}-${day}`;
+// const toDay = '2018-08-01';
 console.log(toDay);
 ;(async () => {
   
