@@ -5,6 +5,7 @@ const Schema = mongoose.Schema,
 
 const schema = new Schema({
   url: String,
+  latestTime: Number, // 最后时间？
   parser: String, // 解析器
   saver: String, // 保存器
   pid: String, // pid

@@ -1,7 +1,7 @@
 const ObjectId = id => id;
 
-const host = 'http://www.zuidazy.net/';
-const getUrl = (id, page) => `${host}?m=vod-type-id-${id}-pg-${page}.html`;
+const host = 'http://www.zdziyuan.com/inc/s_api_m3u8.php';
+const getUrl = (id, page) => `${host}?t=${id}&pg=${page}`;
 
 const type = [
   { // 动作片
@@ -88,7 +88,5 @@ function getClassify (arr, page = 100) {
     pid: item.pid
   }));
 }
-
-exports.fullClass = getClassify(type, 14); // 从第14页开始
 
 exports.chunkClass = getClassify(type, 1); // 从第一页开始

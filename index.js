@@ -20,7 +20,7 @@ log4js.configure({
 const logger = log4js.getLogger();
 logger.level = 'info';
 function execChunk () {
-  const ls = spawn("node", ['./zuidazy/chunk']);
+  const ls = spawn("node", ['./zdziyuan/chunk']);
   // ls.stdout.on('data', (data) => {
   //   logger.info(`stdout: zuidazy ${data}`);
   // });
