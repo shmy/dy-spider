@@ -26,9 +26,9 @@ exports.detailSaver = async payload => {
   count ++;
   if (!p) {
     payload.number = 0;
-    console.log('👌开始保存---#', count, "{" + payload.keyword + "}", payload.id);
+    console.log('👌开始保存---#', count, payload.source, "{" + payload.keyword + "}", payload.id);
     return model.videoModel.create(payload);
   }
-  console.log( '😯开始更新---', count, "{" + payload.name + "}", payload.id);
+  console.log( '😯开始更新---', count, payload.source, "{" + payload.name + "}", payload.id);
   return model.videoModel.update({ id: payload.id }, payload);
 };
