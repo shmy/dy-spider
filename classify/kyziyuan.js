@@ -97,8 +97,8 @@ function getClassify (arr, page = 100) {
     saver: null,
     source: source,
     pid: item.pid,
-    latestTime: new Date("2010-01-01").getTime(),
-    // latestTime: latestTime,
+    // latestTime: new Date("2016-01-01").getTime(),
+    latestTime: latestTime,
   }));
 }
 
