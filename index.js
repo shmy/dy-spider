@@ -20,7 +20,7 @@ log4js.configure({
 const logger = log4js.getLogger();
 logger.level = 'info';
 function execChunk () {
-  const ls = spawn("node", ['./zdziyuan/chunk']);
+  const ls = spawn("node", ['./common/index']);
   // ls.stdout.on('data', (data) => {
   //   logger.info(`stdout: zuidazy ${data}`);
   // });
@@ -30,24 +30,10 @@ function execChunk () {
   });
   
   ls.on('close', (code) => {
-    logger.info(`zuidazy 子进程退出码：${code}`);
+    logger.info(`子进程退出码：${code}`);
   });
 }
 
-function execChunk2 () {
-  const ls = spawn("node", ['./kuyunzy/chunk']);
-  // ls.stdout.on('data', (data) => {
-  //   logger.info(`stdout: kuyunzy ${data}`);
-  // });
-  
-  ls.stderr.on('data', (data) => {
-    logger.error(`stderr: ${data}`);
-  });
-  
-  ls.on('close', (code) => {
-    logger.info(`kuyunzy 子进程退出码：${code}`);
-  });
-}
 const rule = new schedule.RecurrenceRule();
 // 每两小时执行一次
 const times = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24];
@@ -56,5 +42,4 @@ rule.minute = 0;
 
 schedule.scheduleJob(rule, function(){
   execChunk();
-  execChunk2();
 });

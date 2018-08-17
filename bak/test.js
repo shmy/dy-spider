@@ -1,6 +1,6 @@
 const request = require('request-promise-native');
 const parseString = require('xml2js').parseString;
-const getUserAgent = require('./ua');
+const getUserAgent = require('../ua');
 // 最新列表
 // m3u8
 // http://www.zdziyuan.com/inc/s_api_m3u8.php
