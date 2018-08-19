@@ -89,8 +89,8 @@ function getClassify (arr, page = 100) {
     saver: null,
     source: source,
     pid: item.pid,
-    latestTime: new Date("2018-08-17").getTime(),
-    // latestTime: latestTime,
+    // latestTime: new Date("2016-01-01").getTime(),
+    latestTime: latestTime,
   }));
 }
 

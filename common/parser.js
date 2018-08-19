@@ -127,9 +127,15 @@ module.exports = class Parser {
   }
   // 去除html标记
   _filterHTMLTag(content) {
-    content = content.replace(/<\/?[^>]*>/g, ''); //去除HTML Tag
-    content = content.replace(/[|]*\n/, '') //去除行尾空格
-    content = content.replace(/&npsp;/ig, ''); //去掉 npsp
+    return content.replace(/<\/?[^>]*>/g, '') //去除HTML Tag
+      .replace(/[|]*\n/, '') //去除行尾空格
+      .replace(/&npsp;/ig, '') //去掉 npsp
+      .replace(/&nbsp;/ig, '') //去掉 nbsp
+      .replace(/&mdash;/ig, '') //去掉 mdash
+      .replace(/&mdash;/ig, '') //去掉 mdash
+      .replace(/&ldquo;/ig, '') //去掉 ldquo
+      .replace(/&rdquo;/ig, '') //去掉 rdquo
+      ;
     return content;
   }
   // 解析播放地址
